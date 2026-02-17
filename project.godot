@@ -10,9 +10,10 @@ config_version=5
 
 [application]
 
-config/name="NewGame"
+config/name="MahGayme - Maple Prototype"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+run/main_scene="res://scenes/Main.tscn"
 
 [physics]
 

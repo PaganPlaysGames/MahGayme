@@ -1,0 +1,98 @@
+[gd_scene load_steps=8 format=3 uid="uid://main"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_m"]
+[ext_resource type="PackedScene" path="res://scenes/Player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://scenes/Slime.tscn" id="3_slime"]
+
+[sub_resource type="RectangleShape2D" id="1_ground_shape"]
+size = Vector2(2400, 80)
+
+[sub_resource type="RectangleShape2D" id="2_platform_shape"]
+size = Vector2(420, 30)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_m")
+
+[node name="Sky" type="ColorRect" parent="."]
+offset_right = 2400.0
+offset_bottom = 720.0
+color = Color(0.52, 0.77, 0.98, 1)
+
+[node name="Mountains" type="Polygon2D" parent="."]
+position = Vector2(0, 420)
+color = Color(0.42, 0.62, 0.86, 1)
+polygon = PackedVector2Array(0, 200, 180, 110, 320, 170, 520, 60, 740, 190, 980, 70, 1220, 180, 1600, 40, 1900, 160, 2200, 80, 2400, 190, 2400, 300, 0, 300)
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(1200, 680)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+shape = SubResource("1_ground_shape")
+
+[node name="GroundVisual" type="Polygon2D" parent="Ground"]
+position = Vector2(0, -40)
+color = Color(0.29, 0.6, 0.25, 1)
+polygon = PackedVector2Array(-1200, 0, 1200, 0, 1200, 80, -1200, 80)
+
+[node name="PlatformA" type="StaticBody2D" parent="."]
+position = Vector2(680, 540)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformA"]
+shape = SubResource("2_platform_shape")
+
+[node name="PlatformVisual" type="Polygon2D" parent="PlatformA"]
+position = Vector2(0, -15)
+color = Color(0.55, 0.35, 0.2, 1)
+polygon = PackedVector2Array(-210, 0, 210, 0, 210, 30, -210, 30)
+
+[node name="PlatformB" type="StaticBody2D" parent="."]
+position = Vector2(1480, 500)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformB"]
+shape = SubResource("2_platform_shape")
+
+[node name="PlatformVisual" type="Polygon2D" parent="PlatformB"]
+position = Vector2(0, -15)
+color = Color(0.55, 0.35, 0.2, 1)
+polygon = PackedVector2Array(-210, 0, 210, 0, 210, 30, -210, 30)
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+
+[node name="Slime1" parent="." instance=ExtResource("3_slime")]
+position = Vector2(430, 650)
+
+[node name="Slime2" parent="." instance=ExtResource("3_slime")]
+position = Vector2(870, 510)
+
+[node name="Slime3" parent="." instance=ExtResource("3_slime")]
+position = Vector2(1100, 650)
+
+[node name="Slime4" parent="." instance=ExtResource("3_slime")]
+position = Vector2(1540, 470)
+
+[node name="Slime5" parent="." instance=ExtResource("3_slime")]
+position = Vector2(1880, 650)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="MarginContainer" parent="CanvasLayer"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 640.0
+offset_bottom = 150.0
+
+[node name="QuestLabel" type="Label" parent="CanvasLayer/UI"]
+text = "Quest"
+theme_override_font_sizes/font_size = 22
+
+[node name="CounterLabel" type="Label" parent="CanvasLayer/UI"]
+offset_top = 42.0
+offset_right = 500.0
+offset_bottom = 80.0
+text = "Counter"
+
+[node name="HintLabel" type="Label" parent="CanvasLayer/UI"]
+offset_top = 82.0
+offset_right = 560.0
+offset_bottom = 120.0
+text = "Controls: Left/Right to move, Up to jump, Enter to slash"
