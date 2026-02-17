@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://slime"]
+
+[ext_resource type="Script" path="res://scripts/slime.gd" id="1_s"]
+
+[sub_resource type="RectangleShape2D" id="1_slime_shape"]
+size = Vector2(26, 18)
+
+[sub_resource type="RectangleShape2D" id="2_hurtbox_shape"]
+size = Vector2(28, 20)
+
+[node name="Slime" type="CharacterBody2D"]
+script = ExtResource("1_s")
+
+[node name="Body" type="Polygon2D" parent="."]
+color = Color(0.35, 0.9, 0.45, 1)
+polygon = PackedVector2Array(-13, -9, 13, -9, 10, 7, -10, 7)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("1_slime_shape")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("2_hurtbox_shape")
